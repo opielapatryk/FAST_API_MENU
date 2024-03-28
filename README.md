@@ -22,11 +22,10 @@ DELETE: Remove dish <br>
 Module: Dish <br>
 
 # TODO
-- [] Apply Clean Architecture <br> 
-- [] Layer Abstraction<br> 
-- [] Dependency Injection<br> 
-- [] UseCase Implementation<br> 
-- [] Serialization / Deserialization<br> 
-- [] Mock Repo Implementation<br>  
-- [] Database with SQLAlchemy<br> 
-- [] Apply Tests<br> 
+- [x] Apply Clean Architecture <br> 
+- [x] Layer Abstraction<br> 
+- [x] Dependency Injection<br> 
+- [x] UseCase Implementation<br> 
+- [x] Serialization / Deserialization<br> 
+- [x] Mock Repo Implementation<br>  
+- [x] Apply Tests<br> 

@@ -3,10 +3,11 @@ from restaurant.domain.dish import Dish
 from restaurant.serializers.dish import DishJsonEncoder
 
 def test_serializer_domain_dish():
-    dish = Dish('pizza','italian dish',2.99)
+    dish = Dish(1,'pizza','italian dish',2.99)
 
     expected_json = """
         {
+        "id": 1,
         "name": "pizza",
         "description": "italian dish",
         "price": 2.99
