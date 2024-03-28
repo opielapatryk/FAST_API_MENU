@@ -28,3 +28,8 @@ def test_repository_list():
     repo = MemRepo(dish_dicts)
     dishes = [Dish.from_dict(d) for d in dish_dicts]
     assert repo.list() == dishes
+
+def test_repository_get():
+    repo = MemRepo(dish_dicts)
+    dishes = [Dish.from_dict(d) for d in dish_dicts]
+    assert repo.get(1) == dishes[0]

@@ -1,5 +1,6 @@
 from restaurant.repository.memrepo import MemRepo
 from restaurant.use_cases.dish_list import dish_list_use_case
+from restaurant.use_cases.dish_get import dish_get_use_case
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -38,3 +39,8 @@ def dish_list():
     result = dish_list_use_case(repo)
     return result
 
+@app.get("/dishes/{id}")
+def dish_get(id):
+    repo = MemRepo(dishes)
+    result = dish_get_use_case(repo, id)
+    return result
