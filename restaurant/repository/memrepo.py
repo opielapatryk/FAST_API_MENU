@@ -15,3 +15,9 @@ class MemRepo:
          return dish
       except (IndexError, ValueError):
          return None
+
+   def post(self, dish):
+      self.data.append(dish)
+      result = [Dish.from_dict(i) for i in self.data]
+
+      return result

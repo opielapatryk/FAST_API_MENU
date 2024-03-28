@@ -1,7 +1,9 @@
 from restaurant.repository.memrepo import MemRepo
 from restaurant.use_cases.dish_list import dish_list_use_case
 from restaurant.use_cases.dish_get import dish_get_use_case
+from restaurant.use_cases.dish_post import dish_post_use_case
 from fastapi import FastAPI
+from fastapi import HTTPException
 
 app = FastAPI()
 
@@ -44,3 +46,13 @@ def dish_get(id):
     repo = MemRepo(dishes)
     result = dish_get_use_case(repo, id)
     return result
+
+@app.post("/dishes", status_code=201)
+def create_dish(dish: dict):
+    repo = MemRepo(dishes)
+    result = dish_post_use_case(repo, dish)
+
+    if result:
+        return result
+    else:
+        raise HTTPException(status_code=500, detail="Failed to create dish")
