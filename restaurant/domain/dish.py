@@ -1,6 +1,14 @@
+import dataclasses
+
+@dataclasses.dataclass
 class Dish:
-    def __init__(self, name, description, price):
-      self.name = name
-      self.description = description
-      self.price = price
-      
+    name: str
+    description: str
+    price: float
+    
+    @classmethod
+    def from_dict(self,d):
+        return self(**d)
+    
+    def to_dict(self):
+        return dataclasses.asdict(self)
