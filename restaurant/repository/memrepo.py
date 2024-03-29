@@ -9,9 +9,8 @@ class MemRepo:
       return [Dish.from_dict(d) for d in self.data]
     
    def get(self, id):
-      dishes = self.list()
       try:
-         dish = dishes[int(id) - 1]
+         dish = [dish for dish in self.data if dish['id'] == id]
          return dish
       except (IndexError, ValueError):
          return None

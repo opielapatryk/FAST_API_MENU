@@ -16,7 +16,7 @@ GET: List all dishes <br>
 GET{id}: List dish <br>
 POST: Add dish <br>
 PUT: Edit dish <br>
-DELETE: Remove dish <br>
+DELETE{id}: Remove dish <br>
 
 ## Entities
 Module: Dish <br>
