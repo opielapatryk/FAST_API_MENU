@@ -10,7 +10,7 @@ class MemRepo:
     
    def get(self, id):
       try:
-         dish = [dish for dish in self.data if dish['id'] == id]
+         dish = [Dish.from_dict(dish) for dish in self.data if dish['id'] == id]
          return dish
       except (IndexError, ValueError):
          return None
