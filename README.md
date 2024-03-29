@@ -16,17 +16,16 @@ GET: List all dishes <br>
 GET{id}: List dish <br>
 POST: Add dish <br>
 PUT: Edit dish <br>
-DELETE: Remove dish <br>
+DELETE{id}: Remove dish <br>
 
 ## Entities
 Module: Dish <br>
 
 # TODO
-- [] Apply Clean Architecture <br> 
-- [] Layer Abstraction<br> 
-- [] Dependency Injection<br> 
-- [] UseCase Implementation<br> 
-- [] Serialization / Deserialization<br> 
-- [] Mock Repo Implementation<br>  
-- [] Database with SQLAlchemy<br> 
-- [] Apply Tests<br> 
+- [x] Apply Clean Architecture <br> 
+- [x] Layer Abstraction<br> 
+- [x] Dependency Injection<br> 
+- [x] UseCase Implementation<br> 
+- [x] Serialization / Deserialization<br> 
+- [x] Mock Repo Implementation<br>  
+- [x] Apply Tests<br> 
