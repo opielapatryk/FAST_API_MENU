@@ -6,6 +6,7 @@ from restaurant.use_cases.dish_put import dish_put_use_case
 from restaurant.use_cases.dish_delete import dish_delete_use_case
 from fastapi import FastAPI
 from fastapi import HTTPException
+from restaurant.repository.mongorepo import MongoRepo
 
 app = FastAPI()
 
@@ -36,6 +37,13 @@ dishes = [
     },
 ]
 
+mongo_configuration = {
+    "MONGODB_HOSTNAME": 'db',
+    "MONGODB_PORT": 27017,
+    "MONGODB_USER": 'root',
+    "MONGODB_PASSWORD": 'mongodb',
+    "APPLICATION_DB": 'restaurant',
+}
 
 @app.get("/")
 def welcome():
@@ -43,19 +51,19 @@ def welcome():
 
 @app.get("/dishes")
 def dish_list():
-    repo = MemRepo(dishes)
+    repo = MongoRepo(mongo_configuration)
     result = dish_list_use_case(repo)
     return result
 
 @app.get("/dishes/{id}")
 def dish_get(id: int):
-    repo = MemRepo(dishes)
+    repo = MongoRepo(mongo_configuration)
     result = dish_get_use_case(repo, id)
     return result
 
 @app.post("/dishes", status_code=201)
 def create_dish(dish: dict):
-    repo = MemRepo(dishes)
+    repo = MongoRepo(mongo_configuration)
     result = dish_post_use_case(repo, dish)
 
     if result:
@@ -65,7 +73,7 @@ def create_dish(dish: dict):
 
 @app.put("/dishes", status_code=201)
 def update_dish(dish: dict):
-    repo = MemRepo(dishes)
+    repo = MongoRepo(mongo_configuration)
     result = dish_put_use_case(repo, dish)
 
     if result:
@@ -75,7 +83,7 @@ def update_dish(dish: dict):
 
 @app.delete("/dishes/{id}", status_code=201)
 def dish_delete(id: int):
-    repo = MemRepo(dishes)
+    repo = MongoRepo(mongo_configuration)
     result = dish_delete_use_case(repo, id)
 
     if result:
