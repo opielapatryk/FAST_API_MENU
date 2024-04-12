@@ -1,4 +1,5 @@
 from restaurant.repository.memrepo import MemRepo
+from restaurant.repository.postgrerepo import PostgresRepo
 from restaurant.use_cases.dish_list import dish_list_use_case
 from restaurant.use_cases.dish_get import dish_get_use_case
 from restaurant.use_cases.dish_post import dish_post_use_case
@@ -7,6 +8,7 @@ from restaurant.use_cases.dish_delete import dish_delete_use_case
 from fastapi import FastAPI
 from fastapi import HTTPException
 from restaurant.repository.mongorepo import MongoRepo
+import os
 
 app = FastAPI()
 
@@ -45,25 +47,33 @@ mongo_configuration = {
     "APPLICATION_DB": 'restaurant',
 }
 
+postgres_configuration = {
+    "POSTGRES_USER": 'postgres',
+    "POSTGRES_PASSWORD": 'postgres',
+    "POSTGRES_HOSTNAME": 'db',
+    "POSTGRES_PORT": 5432,
+    "APPLICATION_DB": 'restaurant',
+}
+
 @app.get("/")
 def welcome():
     return {"message": "Welcome to the Restaurant API!", "endpoints": {"dishes": "/dishes"}}
 
 @app.get("/dishes")
 def dish_list():
-    repo = MongoRepo(mongo_configuration)
+    repo = PostgresRepo(postgres_configuration)
     result = dish_list_use_case(repo)
     return result
 
 @app.get("/dishes/{id}")
 def dish_get(id: int):
-    repo = MongoRepo(mongo_configuration)
+    repo = PostgresRepo(postgres_configuration)
     result = dish_get_use_case(repo, id)
     return result
 
 @app.post("/dishes", status_code=201)
 def create_dish(dish: dict):
-    repo = MongoRepo(mongo_configuration)
+    repo = PostgresRepo(postgres_configuration)
     result = dish_post_use_case(repo, dish)
 
     if result:
@@ -73,7 +83,7 @@ def create_dish(dish: dict):
 
 @app.put("/dishes", status_code=201)
 def update_dish(dish: dict):
-    repo = MongoRepo(mongo_configuration)
+    repo = PostgresRepo(postgres_configuration)
     result = dish_put_use_case(repo, dish)
 
     if result:
@@ -83,7 +93,7 @@ def update_dish(dish: dict):
 
 @app.delete("/dishes/{id}", status_code=201)
 def dish_delete(id: int):
-    repo = MongoRepo(mongo_configuration)
+    repo = PostgresRepo(postgres_configuration)
     result = dish_delete_use_case(repo, id)
 
     if result:
