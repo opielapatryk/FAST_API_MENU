@@ -29,3 +29,12 @@ Module: Dish <br>
 - [x] Serialization / Deserialization<br> 
 - [x] Mock Repo Implementation<br>  
 - [x] Apply Tests<br> 
+
+# Useful commands:
+### Testing 
+- pytest <br>
+
+### Build, run, stop
+- uvicorn main:app<br>
+- docker-compose up<br>
+- docker-compose up --build<br>
